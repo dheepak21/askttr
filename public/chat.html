@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AskTTR - Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <div></div> <!-- Empty div for spacing -->
+    <div class="logo-title">
+      <h1>AskTTR</h1>
+      <p>An Advanced Interactive AI Chatbot for Indian Rail Users [BETA]</p>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="container">
+    <h2>Welcome, <span id="usernameDisplay"></span>!</h2>
+    <div class="chat-box" id="chatBox"></div>
+    <input type="text" id="userInput" class="chat-input" placeholder="Ask me something...">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="exportChat()" class="export-btn">Export Chat</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("usernameDisplay").innerText = localStorage.getItem("askttrUser") || "Guest";
+    function logout() {
+      localStorage.removeItem("askttrUser");
+      window.location.href = "index.html";
+    }
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

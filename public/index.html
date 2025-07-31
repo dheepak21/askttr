@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AskTTR - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>AskTTR Login</h1>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p style="text-align:center; margin-top:10px;">
+      Don't have an account? <a href="signup.html" style="color:#FF6347;">Signup</a>
+    </p>
+  </div>
+
+  <script>
+    async function login() {
+      const username = document.getElementById("loginUsername").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      if (!username || !password) {
+        alert("Please enter Username and Password.");
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          localStorage.setItem("askttrUser", username);
+          window.location.href = "chat.html";
+        } else {
+          alert(result.message);
+        }
+      } catch (error) {
+        console.error("Login Error:", error);
+        alert("An error occurred. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>

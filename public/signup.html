@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AskTTR - Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>AskTTR Signup</h1>
+    <input type="text" id="signupUsername" placeholder="Username">
+    <input type="password" id="signupPassword" placeholder="Password">
+    <button onclick="signup()">Signup</button>
+    <p style="text-align:center; margin-top:10px;">
+      Already have an account? <a href="index.html" style="color:#FF6347;">Login</a>
+    </p>
+  </div>
+
+  <script>
+    function signup() {
+      const username = document.getElementById("signupUsername").value;
+      localStorage.setItem("askttrUser", username);
+      window.location.href = "chat.html";
+    }
+  </script>
+</body>
+</html>
